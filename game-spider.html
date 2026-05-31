@@ -3,206 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>steam游戏中心</title>
-<link rel="icon" href="data:;,base64,iVBORw0KGgo=">
+<title>游戏列表</title>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Microsoft Yahei", sans-serif;
-}
-
-html, body {
-    background-color: #0b1023;
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-.nav {
-    background-color: #121936;
-    padding: 15px 0;
-}
-.nav-box {
-    display: flex;
-    align-items: center;
-}
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-    color: #60a5fa;
-    margin-right: 30px;
-}
-.nav-menu a {
-    color: #cbd5e1;
-    text-decoration: none;
-    margin: 0 12px;
-    font-size: 14px;
-}
-.nav-menu a:hover {
-    color: #60a5fa;
-}
-
-.search-top {
-    padding: 40px 0;
-    text-align: center;
-}
-.search-top h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #fff;
-}
-.search-top p {
-    color: #94a3b8;
-    margin-bottom: 25px;
-}
-.search-input {
-    width: 100%;
-    max-width: 500px;
-    height: 56px;
-    border-radius: 30px;
-    border: none;
-    outline: none;
-    padding: 0 24px;
-    background: #1e294b;
-    color: #fff;
-    font-size: 16px;
-}
-.search-input::placeholder {
-    color: #94a3b8;
-}
-
-.title-bar {
-    font-size: 18px;
-    border-left: 4px solid #60a5fa;
-    padding-left: 12px;
-    margin: 30px 0 15px;
-}
-
-.game-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 50px;
-}
-
-.game-card {
-    background: #121936;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-}
-.game-card img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-}
-.game-card .info {
-    padding: 12px;
-}
-.game-card h3 {
-    font-size: 15px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.game-card p {
-    font-size: 13px;
-    color: #94a3b8;
-    margin-top: 4px;
-}
-
-.content-wrap {
-    flex: 1;
-}
-
-.footer {
-    background-color: #0b1023;
-    color: #94a3b8;
-    font-size: 13px;
-    text-align: center;
-    padding: 10px 0;
-}
-
-@media (max-width: 768px) {
-    .game-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Microsoft Yahei}
+body{background:#0b1023;color:#fff;padding:20px}
+.container{max-width:900px;margin:0 auto}
+.back{color:#60a5fa;margin-bottom:20px;display:inline-block}
+.game-item{background:#121936;padding:20px;border-radius:10px;margin-bottom:15px}
+.game-item img{width:100%;border-radius:8px;margin-bottom:15px}
+.game-item h2{font-size:18px;margin-bottom:8px}
+.game-item p{color:#94a3b8;margin:4px 0}
+.down{background:#60a5fa;color:#fff;padding:8px 16px;border-radius:6px;display:inline-block;margin-top:10px;text-decoration:none}
 </style>
 </head>
 <body>
 
-<div class="nav">
-    <div class="container nav-box">
-        <div class="logo">steam游戏中心</div>
-        <div class="nav-menu">
-            <a href="index.html">首页</a>
-            <a href="game-spider.html">单机游戏</a>
-            <a href="#">互动游戏</a>
-            <a href="#">常见问题</a>
-        </div>
-    </div>
-</div>
+<div class="container">
+    <a href="index.html" class="back">← 返回首页</a>
 
-<div class="content-wrap">
-    <div class="search-top">
-        <div class="container">
-            <h1>欢迎来到steam游戏中心</h1>
-            <p>全站免费游戏资源，无收费、无套路，记得收藏本站</p>
-            <input type="text" class="search-input" placeholder="输入游戏名称搜索...">
-        </div>
+    <!-- ==================================== -->
+    <!-- 游戏 1 首页会自动读取这里 -->
+    <div class="game-item"
+         data-img="spider.jpg"
+         data-title="漫威蜘蛛侠：重制版"
+         data-size="53.94GB"
+         data-date="2026-01-19">
+
+        <img src="spider.jpg" alt="漫威蜘蛛侠">
+        <h2>漫威蜘蛛侠：重制版</h2>
+        <p>大小：53.94GB</p>
+        <p>更新：2026-01-19</p>
+        <p>介绍：开放世界超级英雄冒险</p>
+        <a href="https://pan.baidu.com/xxx" class="down">网盘下载</a>
     </div>
 
-    <div class="container">
-        <h2 class="title-bar">最近更新</h2>
-        <div class="game-list" id="gameList"></div>
+    <!-- ==================================== -->
+    <!-- 游戏 2 直接复制改内容 -->
+    <div class="game-item"
+         data-img="game2.jpg"
+         data-title="GTA5 完整版"
+         data-size="92GB"
+         data-date="2026-06-01">
+
+        <img src="game2.jpg" alt="GTA5">
+        <h2>GTA5 完整版</h2>
+        <p>大小：92GB</p>
+        <p>更新：2026-06-01</p>
+        <p>介绍：经典开放世界游戏</p>
+        <a href="https://pan.baidu.com/xxx" class="down">网盘下载</a>
     </div>
+
 </div>
-
-<div class="footer">
-    Copyright © 2026 steam游戏中心 | 免费游戏资源分享站
-</div>
-
-<script>
-// 自动读取 game-spider.html 里面的游戏 → 显示到首页
-async function loadGamesFromPage() {
-    const res = await fetch("game-spider.html");
-    const text = await res.text();
-    const doc = new DOMParser().parseFromString(text, "text/html");
-    const games = doc.querySelectorAll(".game-item");
-    const list = document.getElementById("gameList");
-
-    games.forEach(item => {
-        const img = item.getAttribute("data-img");
-        const title = item.getAttribute("data-title");
-        const size = item.getAttribute("data-size");
-        const date = item.getAttribute("data-date");
-
-        const card = document.createElement("div");
-        card.className = "game-card";
-        card.onclick = () => location.href = "game-spider.html";
-        card.innerHTML = `
-            <img src="${img}" alt="${title}">
-            <div class="info">
-                <h3>${title}</h3>
-                <p>${size} · ${date}</p>
-            </div>
-        `;
-        list.appendChild(card);
-    });
-}
-
-loadGamesFromPage();
-</script>
-
 </body>
 </html>
