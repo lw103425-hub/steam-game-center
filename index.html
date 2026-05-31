@@ -87,7 +87,7 @@ html, body {
     margin: 30px 0 15px;
 }
 
-/* 关键：桌面一行4个，卡片变大 */
+/* 调整卡片尺寸，和示例截图风格匹配 */
 .game-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -97,7 +97,7 @@ html, body {
 
 .game-card {
     background: #121936;
-    border-radius: 8px;
+    border-radius: 12px; /* 圆角和截图更匹配 */
     overflow: hidden;
     transition: 0.2s;
     cursor: pointer;
@@ -108,22 +108,22 @@ html, body {
 }
 .game-card img {
     width: 100%;
-    height: 140px; /* 图片加高，卡片变大 */
+    height: 220px; /* 图片加高，和截图里的卡片高度接近 */
     object-fit: cover;
 }
 .game-card-text {
-    padding: 12px; /* 内边距加大，文字不挤 */
+    padding: 16px; /* 内边距加大，文字排版更舒展 */
 }
 .game-card-text h3 {
-    font-size: 15px; /* 标题字放大 */
-    font-weight: normal;
+    font-size: 17px; /* 标题字放大，更醒目 */
+    font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 .game-card-text p {
-    font-size: 13px; /* 日期字放大 */
+    font-size: 14px; /* 文字放大，更清晰 */
     color: #94a3b8;
 }
 
@@ -143,6 +143,9 @@ html, body {
 @media (max-width: 768px) {
     .game-list {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .game-card img {
+        height: 180px; /* 手机端图片高度适配 */
     }
 }
 </style>
