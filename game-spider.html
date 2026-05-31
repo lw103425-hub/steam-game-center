@@ -9,11 +9,55 @@
 body{background:#0b1023;color:#fff;padding:20px}
 .container{max-width:600px;margin:0 auto}
 .back{color:#60a5fa;margin-bottom:20px;display:inline-block;text-decoration:none}
-.game-item{background:#121936;padding:20px;border-radius:10px;margin-bottom:15px}
-.game-item img{width:100%;border-radius:8px;margin-bottom:15px}
-.game-item h2{font-size:18px;margin-bottom:8px}
-.game-item p{color:#94a3b8;margin:4px 0}
-.down{background:#60a5fa;color:#fff;padding:8px 16px;border-radius:6px;display:inline-block;margin-top:10px;text-decoration:none}
+/* 游戏详情板块 */
+.game-detail {
+    background:#121936;
+    padding:20px;
+    border-radius:10px;
+}
+.game-detail h2 {
+    font-size:20px;
+    margin-bottom:15px;
+    text-align:center;
+}
+.game-img {
+    width:100%;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+.game-info {
+    margin-bottom:15px;
+    color:#94a3b8;
+    line-height:1.6;
+}
+.down {
+    background:#60a5fa;
+    color:#fff;
+    padding:10px 20px;
+    border-radius:6px;
+    display:inline-block;
+    text-decoration:none;
+    text-align:center;
+    width:100%;
+    margin-top:10px;
+}
+/* 分类列表样式 */
+.game-item-list {
+    background:#121936;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:15px;
+    cursor:pointer;
+}
+.game-item-list h3 {
+    font-size:16px;
+    margin-bottom:5px;
+}
+.game-item-list p {
+    font-size:13px;
+    color:#94a3b8;
+}
+/* 隐藏数据用的game-item */
 .game-item { display: none; }
 </style>
 </head>
@@ -22,13 +66,15 @@ body{background:#0b1023;color:#fff;padding:20px}
 <div class="container">
     <a href="index.html" class="back">← 返回首页</a>
 
-    <!-- 只存数据，不显示内容 -->
+    <!-- 游戏数据（只存数据，不直接显示） -->
     <div class="game-item"
          data-id="spider"
          data-img="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/fa103eb1ac93423faa12e811089de823.png"
          data-title="漫威蜘蛛侠：重制版"
          data-size="53.94GB"
          data-date="2026-01-19"
+         data-intro="开放世界超级英雄冒险游戏，在纽约城市中穿梭战斗。"
+         data-link="https://pan.quark.cn/s/e176648ea3da"
          data-cate="单机游戏">
     </div>
 
@@ -38,43 +84,89 @@ body{background:#0b1023;color:#fff;padding:20px}
          data-title="GTA5 完整版"
          data-size="92GB"
          data-date="2026-06-01"
+         data-intro="经典开放世界犯罪游戏，支持线上模式和丰富的MOD。"
+         data-link="网盘链接"
          data-cate="单机游戏">
     </div>
 
+    <div class="game-item"
+         data-id="mybully"
+         data-img="game3.jpg"
+         data-title="我的恶霸女友"
+         data-size="12.1GB"
+         data-date="2026-06-01"
+         data-intro="3D/SLG游戏，讲述成年后与高中恶霸重逢的故事，有报复与复合双结局。"
+         data-link="网盘链接"
+         data-cate="互动游戏">
+    </div>
+
+    <!-- 动态内容会插入到这里 -->
+    <div id="content"></div>
 </div>
 
 <script>
 const params = new URLSearchParams(location.search);
 const gameId = params.get('id');
 const cateName = params.get('cate');
-const container = document.querySelector('.container');
+const contentBox = document.getElementById('content');
 
+// 1. 单个游戏详情页
 if (gameId) {
-    const game = document.querySelector(`[data-id="${gameId}"]`);
+    const game = document.querySelector(`.game-item[data-id="${gameId}"]`);
     if (game) {
-        container.innerHTML += `
-        <div class="game-item" style="display:block;">
-            <img src="${game.dataset.img}" alt="${game.dataset.title}">
+        contentBox.innerHTML = `
+        <div class="game-detail">
             <h2>${game.dataset.title}</h2>
-            <p>大小：${game.dataset.size}</p>
-            <p>更新：${game.dataset.date}</p>
-            <p>分类：${game.dataset.cate}</p>
+            <img class="game-img" src="${game.dataset.img}" alt="${game.dataset.title}">
+            <div class="game-info">
+                <p>大小：${game.dataset.size}</p>
+                <p>更新：${game.dataset.date}</p>
+                <p>分类：${game.dataset.cate}</p>
+                <p>介绍：${game.dataset.intro}</p>
+            </div>
+            <a href="${game.dataset.link}" class="down">网盘下载</a>
         </div>
         `;
+    } else {
+        contentBox.innerHTML = `
+        <p style="text-align:center;margin-top:50px;color:#94a3b8;">未找到该游戏</p>
+        <a href="index.html" class="back" style="display:block;text-align:center;margin-top:20px;">返回首页</a>
+        `;
     }
-} else if (cateName) {
-    const games = document.querySelectorAll(`[data-cate="${cateName}"]`);
+}
+// 2. 分类列表页
+else if (cateName) {
+    const games = document.querySelectorAll(`.game-item[data-cate="${cateName}"]`);
+    if (games.length > 0) {
+        let html = `<h2 style="margin-bottom:15px;">${cateName}列表</h2>`;
+        games.forEach(g => {
+            html += `
+            <div class="game-item-list" onclick="location.href='game-spider.html?id=${g.dataset.id}'">
+                <h3>${g.dataset.title}</h3>
+                <p>${g.dataset.size} · ${g.dataset.date}</p>
+            </div>
+            `;
+        });
+        contentBox.innerHTML = html;
+    } else {
+        contentBox.innerHTML = `<p style="text-align:center;color:#94a3b8;">该分类暂无游戏</p>`;
+    }
+}
+// 3. 直接访问时显示全部游戏列表
+else {
+    const games = document.querySelectorAll('.game-item');
+    let html = `<h2 style="margin-bottom:15px;">全部游戏</h2>`;
     games.forEach(g => {
-        container.innerHTML += `
-        <div class="game-item" style="display:block;">
-            <img src="${g.dataset.img}" alt="${g.dataset.title}" style="height:180px">
-            <h2>${g.dataset.title}</h2>
-            <p>大小：${g.dataset.size}</p>
-            <p>更新：${g.dataset.date}</p>
+        html += `
+        <div class="game-item-list" onclick="location.href='game-spider.html?id=${g.dataset.id}'">
+            <h3>${g.dataset.title}</h3>
+            <p>${g.dataset.size} · ${g.dataset.date} · ${g.dataset.cate}</p>
         </div>
         `;
     });
+    contentBox.innerHTML = html;
 }
 </script>
+
 </body>
 </html>
