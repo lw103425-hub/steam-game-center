@@ -56,13 +56,13 @@ html, body {
     text-align: center;
 }
 .search-top h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 28px;
+    margin-bottom: 15px;
     color: #fff;
 }
 .search-top p {
     color: #94a3b8;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 .search-input {
     width: 100%;
@@ -75,6 +75,9 @@ html, body {
     background: #1e294b;
     color: #fff;
     font-size: 16px;
+}
+.search-input::placeholder {
+    color: #94a3b8;
 }
 
 .title-bar {
@@ -127,7 +130,9 @@ html, body {
     background-color: #0b1023;
     color: #94a3b8;
     font-size: 13px;
+    text-align: left;
     padding: 10px 0;
+    margin-top: auto;
 }
 </style>
 </head>
@@ -137,7 +142,7 @@ html, body {
     <div class="container nav-box">
         <div class="logo">steam游戏中心</div>
         <div class="nav-menu">
-            <a href="#">首页</a>
+            <a href="index.html">首页</a>
             <a href="#">单机游戏</a>
             <a href="#">互动游戏</a>
             <a href="#">常见问题</a>
@@ -156,8 +161,15 @@ html, body {
 
     <div class="container">
         <h2 class="title-bar">最近更新</h2>
-        <div class="game-list" id="gameList">
-            <!-- 这里会自动加载游戏，不用手动写 -->
+        <div class="game-list">
+            <!-- 点击这个卡片会跳转到 games.html -->
+            <div class="game-card" onclick="location.href='games.html'">
+                <img src="images/xxx.jpg" alt="漫威蜘蛛侠：重制版">
+                <div class="game-card-text">
+                    <h3>漫威蜘蛛侠：重制版</h3>
+                    <p>单机游戏 / 2026-01-19</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -165,25 +177,6 @@ html, body {
 <div class="footer">
     Copyright © 2026 steam游戏中心 | 免费游戏资源分享站
 </div>
-
-<!-- 读取游戏数据文件 -->
-<script src="data.js"></script>
-
-<script>
-// 自动从 data.js 读取游戏并显示卡片
-const list = document.getElementById('gameList');
-games.forEach(game => {
-  list.innerHTML += `
-    <div class="game-card" onclick="location.href='${game.link}'">
-      <img src="${game.img}" alt="">
-      <div class="game-card-text">
-        <h3>${game.title}</h3>
-        <p>${game.type} / ${game.date}</p>
-      </div>
-    </div>
-  `;
-});
-</script>
 
 </body>
 </html>
