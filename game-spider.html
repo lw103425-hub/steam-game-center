@@ -22,7 +22,7 @@ body{background:#0b1023;color:#fff;padding:20px}
 <div class="container">
     <a href="index.html" class="back">← 返回首页</a>
 
-    <!-- 漫威蜘蛛侠 -->
+    <!-- 只存数据，不显示内容 -->
     <div class="game-item"
          data-id="spider"
          data-img="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/fa103eb1ac93423faa12e811089de823.png"
@@ -30,16 +30,8 @@ body{background:#0b1023;color:#fff;padding:20px}
          data-size="53.94GB"
          data-date="2026-01-19"
          data-cate="单机游戏">
-
-        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/fa103eb1ac93423faa12e811089de823.png" alt="漫威蜘蛛侠">
-        <h2>漫威蜘蛛侠：重制版</h2>
-        <p>大小：53.94GB</p>
-        <p>更新：2026-01-19</p>
-        <p>介绍：开放世界超级英雄冒险</p>
-        <a href="https://pan.quark.cn/s/e176648ea3da" class="down">网盘下载</a>
     </div>
 
-    <!-- GTA5 -->
     <div class="game-item"
          data-id="gta5"
          data-img="game2.jpg"
@@ -47,13 +39,6 @@ body{background:#0b1023;color:#fff;padding:20px}
          data-size="92GB"
          data-date="2026-06-01"
          data-cate="单机游戏">
-
-        <img src="game2.jpg" alt="GTA5">
-        <h2>GTA5 完整版</h2>
-        <p>大小：92GB</p>
-        <p>更新：2026-06-01</p>
-        <p>介绍：经典开放世界游戏</p>
-        <a href="网盘链接" class="down">网盘下载</a>
     </div>
 
 </div>
@@ -62,19 +47,34 @@ body{background:#0b1023;color:#fff;padding:20px}
 const params = new URLSearchParams(location.search);
 const gameId = params.get('id');
 const cateName = params.get('cate');
+const container = document.querySelector('.container');
 
 if (gameId) {
-    document.querySelectorAll('.game-item').forEach(g => {
-        if (g.dataset.id === gameId) g.style.display = 'block';
-    });
+    const game = document.querySelector(`[data-id="${gameId}"]`);
+    if (game) {
+        container.innerHTML += `
+        <div class="game-item" style="display:block;">
+            <img src="${game.dataset.img}" alt="${game.dataset.title}">
+            <h2>${game.dataset.title}</h2>
+            <p>大小：${game.dataset.size}</p>
+            <p>更新：${game.dataset.date}</p>
+            <p>分类：${game.dataset.cate}</p>
+        </div>
+        `;
+    }
 } else if (cateName) {
-    document.querySelectorAll('.game-item').forEach(g => {
-        if (g.dataset.cate === cateName) g.style.display = 'block';
+    const games = document.querySelectorAll(`[data-cate="${cateName}"]`);
+    games.forEach(g => {
+        container.innerHTML += `
+        <div class="game-item" style="display:block;">
+            <img src="${g.dataset.img}" alt="${g.dataset.title}" style="height:180px">
+            <h2>${g.dataset.title}</h2>
+            <p>大小：${g.dataset.size}</p>
+            <p>更新：${g.dataset.date}</p>
+        </div>
+        `;
     });
-} else {
-    document.querySelectorAll('.game-item').forEach(g => g.style.display = 'block');
 }
 </script>
-
 </body>
 </html>
