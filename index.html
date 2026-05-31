@@ -146,8 +146,8 @@ html, body {
         <div class="logo">steam游戏中心</div>
         <div class="nav-menu">
             <a href="index.html">首页</a>
-            <a href="game-spider.html">单机游戏</a>
-            <a href="#">互动游戏</a>
+            <a href="game-spider.html?cat=single">单机游戏</a>
+            <a href="game-spider.html?cat=interactive">互动游戏</a>
             <a href="#">常见问题</a>
         </div>
     </div>
@@ -189,7 +189,6 @@ async function loadGamesFromPage() {
 
         const card = document.createElement("div");
         card.className = "game-card";
-        // 关键：带游戏ID跳转，game-spider.html会根据ID只显示对应游戏
         card.onclick = () => location.href = `game-spider.html?id=${id}`;
         card.innerHTML = `
             <img src="${img}" alt="${title}">
