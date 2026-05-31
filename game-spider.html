@@ -3,17 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>游戏列表</title>
+<title>游戏详情</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Microsoft Yahei}
 body{background:#0b1023;color:#fff;padding:20px}
-.container{max-width:900px;margin:0 auto}
-.back{color:#60a5fa;margin-bottom:20px;display:inline-block}
+.container{max-width:600px;margin:0 auto}
+.back{color:#60a5fa;margin-bottom:20px;display:inline-block;text-decoration:none}
 .game-item{background:#121936;padding:20px;border-radius:10px;margin-bottom:15px}
 .game-item img{width:100%;border-radius:8px;margin-bottom:15px}
 .game-item h2{font-size:18px;margin-bottom:8px}
 .game-item p{color:#94a3b8;margin:4px 0}
 .down{background:#60a5fa;color:#fff;padding:8px 16px;border-radius:6px;display:inline-block;margin-top:10px;text-decoration:none}
+/* 隐藏所有游戏，由JS控制只显示目标游戏 */
+.game-item { display: none; }
 </style>
 </head>
 <body>
@@ -22,8 +24,9 @@ body{background:#0b1023;color:#fff;padding:20px}
     <a href="index.html" class="back">← 返回首页</a>
 
     <!-- ==================================== -->
-    <!-- 游戏 1 首页会自动读取这里 -->
-    <div class="game-item"
+    <!-- 游戏1：漫威蜘蛛侠 -->
+    <div class="game-item" id="game-spider"
+         data-id="spider"
          data-img="spider.jpg"
          data-title="漫威蜘蛛侠：重制版"
          data-size="53.94GB"
@@ -34,12 +37,13 @@ body{background:#0b1023;color:#fff;padding:20px}
         <p>大小：53.94GB</p>
         <p>更新：2026-01-19</p>
         <p>介绍：开放世界超级英雄冒险</p>
-        <a href="https://pan.baidu.com/xxx" class="down">网盘下载</a>
+        <a href="https://pan.quark.cn/s/e176648ea3da" class="down">网盘下载</a>
     </div>
 
     <!-- ==================================== -->
-    <!-- 游戏 2 直接复制改内容 -->
-    <div class="game-item"
+    <!-- 游戏2：GTA5 -->
+    <div class="game-item" id="game-gta5"
+         data-id="gta5"
          data-img="game2.jpg"
          data-title="GTA5 完整版"
          data-size="92GB"
@@ -50,9 +54,32 @@ body{background:#0b1023;color:#fff;padding:20px}
         <p>大小：92GB</p>
         <p>更新：2026-06-01</p>
         <p>介绍：经典开放世界游戏</p>
-        <a href="https://pan.baidu.com/xxx" class="down">网盘下载</a>
+        <a href="网盘链接" class="down">网盘下载</a>
     </div>
 
 </div>
+
+<script>
+// 获取URL里的游戏ID
+const params = new URLSearchParams(location.search);
+const gameId = params.get('id');
+
+if (gameId) {
+    // 只显示对应ID的游戏
+    const targetGame = document.getElementById(`game-${gameId}`);
+    if (targetGame) {
+        targetGame.style.display = 'block';
+    } else {
+        // 找不到游戏时提示
+        document.querySelector('.container').innerHTML = '<p style="text-align:center;margin-top:50px;color:#94a3b8;">未找到该游戏</p><a href="index.html" class="back" style="display:block;text-align:center;margin-top:20px;">返回首页</a>';
+    }
+} else {
+    // 直接访问game-spider.html时，默认显示所有游戏
+    document.querySelectorAll('.game-item').forEach(item => {
+        item.style.display = 'block';
+    });
+}
+</script>
+
 </body>
 </html>
