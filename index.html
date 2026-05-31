@@ -52,7 +52,7 @@ html, body {
 }
 
 .search-top {
-    padding: 40px 0;
+    padding: 60px 0;
     text-align: center;
 }
 .search-top h1 {
@@ -80,50 +80,23 @@ html, body {
     color: #94a3b8;
 }
 
-.title-bar {
-    font-size: 18px;
-    border-left: 4px solid #60a5fa;
-    padding-left: 12px;
-    margin: 30px 0 15px;
+/* 资源入口样式 */
+.resource-section {
+    text-align: center;
+    margin: 40px 0;
 }
-
-.game-list {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 16px;
-    margin-bottom: 50px;
+.resource-btn {
+    display: inline-block;
+    background-color: #60a5fa;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.2s;
 }
-
-.game-card {
-    background: #121936;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: 0.2s;
-    cursor: pointer;
-}
-.game-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px #253b7050;
-}
-.game-card img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-}
-.game-card-text {
-    padding: 8px;
-}
-.game-card-text h3 {
-    font-size: 12px;
-    font-weight: normal;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 4px;
-}
-.game-card-text p {
-    font-size: 10px;
-    color: #94a3b8;
+.resource-btn:hover {
+    background-color: #3b82f6;
 }
 
 .footer {
@@ -142,7 +115,7 @@ html, body {
     <div class="container nav-box">
         <div class="logo">steam游戏中心</div>
         <div class="nav-menu">
-            <a href="index.html">首页</a>
+            <a href="#">首页</a>
             <a href="#">单机游戏</a>
             <a href="#">互动游戏</a>
             <a href="#">常见问题</a>
@@ -159,17 +132,11 @@ html, body {
         </div>
     </div>
 
-    <div class="container">
-        <h2 class="title-bar">最近更新</h2>
-        <div class="game-list">
-            <!-- 点击这个卡片会跳转到 games.html -->
-            <div class="game-card" onclick="location.href='games.html'">
-                <img src="images/xxx.jpg" alt="漫威蜘蛛侠：重制版">
-                <div class="game-card-text">
-                    <h3>漫威蜘蛛侠：重制版</h3>
-                    <p>单机游戏 / 2026-01-19</p>
-                </div>
-            </div>
+    <div class="resource-section">
+        <div class="container">
+            <a href="https://你的资源仓库地址/或者你的游戏站地址" class="resource-btn">
+                进入游戏资源库
+            </a>
         </div>
     </div>
 </div>
