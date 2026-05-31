@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>steam游戏中心</title>
-<link rel="icon" href="data:;,base64,iVBORw0KGgo=">
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <style>
 * {
     margin: 0;
@@ -173,7 +173,6 @@ html, body {
 </div>
 
 <script>
-// 自动读取 game-spider.html 里面的游戏 → 显示到首页
 async function loadGamesFromPage() {
     const res = await fetch("game-spider.html");
     const text = await res.text();
@@ -182,6 +181,7 @@ async function loadGamesFromPage() {
     const list = document.getElementById("gameList");
 
     games.forEach(item => {
+        const id = item.getAttribute("data-id");
         const img = item.getAttribute("data-img");
         const title = item.getAttribute("data-title");
         const size = item.getAttribute("data-size");
@@ -189,7 +189,8 @@ async function loadGamesFromPage() {
 
         const card = document.createElement("div");
         card.className = "game-card";
-        card.onclick = () => location.href = "game-spider.html";
+        // 关键：带游戏ID跳转，game-spider.html会根据ID只显示对应游戏
+        card.onclick = () => location.href = `game-spider.html?id=${id}`;
         card.innerHTML = `
             <img src="${img}" alt="${title}">
             <div class="info">
