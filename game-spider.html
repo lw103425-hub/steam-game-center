@@ -5,103 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>游戏详情</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Microsoft Yahei}
-body{background:#0b1023;color:#fff;padding:20px}
-.container{max-width:600px;margin:0 auto}
-.back{color:#60a5fa;margin-bottom:20px;display:inline-block;text-decoration:none}
-/* 游戏详情板块 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft Yahei", sans-serif;
+}
+body {
+    background-color: #0b1023;
+    color: #fff;
+    padding: 20px;
+}
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.back {
+    color: #60a5fa;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+/* 游戏详情卡片 */
 .game-detail {
-    background:#121936;
-    padding:20px;
-    border-radius:10px;
+    background-color: #121936;
+    border-radius: 10px;
+    padding: 20px;
 }
 .game-detail h2 {
-    font-size:20px;
-    margin-bottom:15px;
-    text-align:center;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 15px;
 }
 .game-img {
-    width:100%;
-    border-radius:8px;
-    margin-bottom:20px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    /* 防止图片加载不出来时的错位 */
+    min-height: 160px;
+    background: #1e294b;
+    object-fit: cover;
 }
-.game-info {
-    margin-bottom:15px;
-    color:#94a3b8;
-    line-height:1.6;
+.game-info p {
+    color: #94a3b8;
+    margin: 8px 0;
+    line-height: 1.6;
 }
 .down {
-    background:#60a5fa;
-    color:#fff;
-    padding:10px 20px;
-    border-radius:6px;
-    display:inline-block;
-    text-decoration:none;
-    text-align:center;
-    width:100%;
-    margin-top:10px;
+    display: block;
+    background-color: #60a5fa;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-top: 20px;
 }
 /* 分类列表样式 */
 .game-item-list {
-    background:#121936;
-    padding:15px;
-    border-radius:8px;
-    margin-bottom:15px;
-    cursor:pointer;
+    background-color: #121936;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 .game-item-list h3 {
-    font-size:16px;
-    margin-bottom:5px;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 .game-item-list p {
-    font-size:13px;
-    color:#94a3b8;
+    font-size: 13px;
+    color: #94a3b8;
 }
 /* 隐藏数据用的game-item */
 .game-item { display: none; }
 </style>
 </head>
 <body>
-
 <div class="container">
     <a href="index.html" class="back">← 返回首页</a>
-
-    <!-- 游戏数据（只存数据，不直接显示） -->
-    <div class="game-item"
-         data-id="spider"
-         data-img="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/fa103eb1ac93423faa12e811089de823.png"
-         data-title="漫威蜘蛛侠：重制版"
-         data-size="53.94GB"
-         data-date="2026-01-19"
-         data-intro="开放世界超级英雄冒险游戏，在纽约城市中穿梭战斗。"
-         data-link="https://pan.quark.cn/s/e176648ea3da"
-         data-cate="单机游戏">
-    </div>
-
-    <div class="game-item"
-         data-id="gta5"
-         data-img="game2.jpg"
-         data-title="GTA5 完整版"
-         data-size="92GB"
-         data-date="2026-06-01"
-         data-intro="经典开放世界犯罪游戏，支持线上模式和丰富的MOD。"
-         data-link="网盘链接"
-         data-cate="单机游戏">
-    </div>
-
-    <div class="game-item"
-         data-id="mybully"
-         data-img="game3.jpg"
-         data-title="我的恶霸女友"
-         data-size="12.1GB"
-         data-date="2026-06-01"
-         data-intro="3D/SLG游戏，讲述成年后与高中恶霸重逢的故事，有报复与复合双结局。"
-         data-link="网盘链接"
-         data-cate="互动游戏">
-    </div>
-
-    <!-- 动态内容会插入到这里 -->
     <div id="content"></div>
+</div>
+
+<!-- 游戏数据（只存数据，不直接显示） -->
+<div class="game-item"
+     data-id="spider"
+     data-img="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/fa103eb1ac93423faa12e811089de823.png"
+     data-title="漫威蜘蛛侠：重制版"
+     data-size="53.94GB"
+     data-date="2026-01-19"
+     data-intro="开放世界超级英雄冒险游戏，在纽约城市中穿梭战斗。"
+     data-link="https://pan.quark.cn/s/e176648ea3da"
+     data-cate="单机游戏">
+</div>
+
+<div class="game-item"
+     data-id="gta5"
+     data-img="game2.jpg"
+     data-title="GTA5 完整版"
+     data-size="92GB"
+     data-date="2026-06-01"
+     data-intro="经典开放世界犯罪游戏，支持线上模式和丰富的MOD。"
+     data-link="网盘链接"
+     data-cate="单机游戏">
+</div>
+
+<div class="game-item"
+     data-id="mybully"
+     data-img="game3.jpg"
+     data-title="我的恶霸女友"
+     data-size="12.1GB"
+     data-date="2026-06-01"
+     data-intro="3D/SLG游戏，讲述成年后与高中恶霸重逢的故事，有报复与复合双结局。"
+     data-link="网盘链接"
+     data-cate="互动游戏">
 </div>
 
 <script>
@@ -110,7 +127,7 @@ const gameId = params.get('id');
 const cateName = params.get('cate');
 const contentBox = document.getElementById('content');
 
-// 1. 单个游戏详情页
+// 单个游戏详情页
 if (gameId) {
     const game = document.querySelector(`.game-item[data-id="${gameId}"]`);
     if (game) {
@@ -130,11 +147,11 @@ if (gameId) {
     } else {
         contentBox.innerHTML = `
         <p style="text-align:center;margin-top:50px;color:#94a3b8;">未找到该游戏</p>
-        <a href="index.html" class="back" style="display:block;text-align:center;margin-top:20px;">返回首页</a>
+        <a href="index.html" class="back" style="display:block;text-align:center;margin-top:20px;text-align:center;">返回首页</a>
         `;
     }
 }
-// 2. 分类列表页
+// 分类列表页
 else if (cateName) {
     const games = document.querySelectorAll(`.game-item[data-cate="${cateName}"]`);
     if (games.length > 0) {
@@ -152,7 +169,7 @@ else if (cateName) {
         contentBox.innerHTML = `<p style="text-align:center;color:#94a3b8;">该分类暂无游戏</p>`;
     }
 }
-// 3. 直接访问时显示全部游戏列表
+// 直接访问时显示全部游戏列表
 else {
     const games = document.querySelectorAll('.game-item');
     let html = `<h2 style="margin-bottom:15px;">全部游戏</h2>`;
@@ -167,6 +184,5 @@ else {
     contentBox.innerHTML = html;
 }
 </script>
-
 </body>
 </html>
