@@ -11,46 +11,56 @@
     box-sizing: border-box;
     font-family: "Microsoft Yahei", sans-serif;
 }
-body {
+
+/* 关键修复：页面高度100%，背景统一 */
+html, body {
     background-color: #0b1023;
     color: #fff;
+    min-height: 100vh;
     padding: 20px;
 }
+
 .container {
     max-width: 600px;
     margin: 0 auto;
 }
+
 .back {
     color: #60a5fa;
     text-decoration: none;
     display: inline-block;
     margin-bottom: 20px;
 }
+
 /* 游戏详情卡片 */
 .game-detail {
     background-color: #121936;
     border-radius: 10px;
     padding: 20px;
 }
+
 .game-detail h2 {
     font-size: 20px;
     text-align: center;
     margin-bottom: 15px;
 }
+
 .game-img {
     width: 100%;
     border-radius: 8px;
     margin-bottom: 20px;
-    /* 防止图片加载不出来时的错位 */
     min-height: 160px;
     background: #1e294b;
     object-fit: cover;
+    display: block; /* 关键：消除图片默认的间隙 */
 }
+
 .game-info p {
     color: #94a3b8;
     margin: 8px 0;
     line-height: 1.6;
 }
+
 .down {
     display: block;
     background-color: #60a5fa;
@@ -61,6 +71,7 @@ body {
     text-decoration: none;
     margin-top: 20px;
 }
+
 /* 分类列表样式 */
 .game-item-list {
     background-color: #121936;
@@ -69,14 +80,17 @@ body {
     margin-bottom: 10px;
     cursor: pointer;
 }
+
 .game-item-list h3 {
     font-size: 16px;
     margin-bottom: 5px;
 }
+
 .game-item-list p {
     font-size: 13px;
     color: #94a3b8;
 }
+
 /* 隐藏数据用的game-item */
 .game-item { display: none; }
 </style>
