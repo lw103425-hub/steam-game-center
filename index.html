@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>steam游戏中心</title>
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<link rel="icon" href="data:;,base64,iVBORw0KGgo=">
 <style>
 * {
     margin: 0;
@@ -87,13 +87,37 @@ html, body {
     margin: 30px 0 15px;
 }
 
-/* 保留原容器样式，内部无内容 */
 .game-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     margin-bottom: 50px;
-    min-height: 200px;
+}
+
+.game-card {
+    background: #121936;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.game-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+.game-card .info {
+    padding: 12px;
+}
+.game-card h3 {
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.game-card p {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 4px;
 }
 
 .content-wrap {
@@ -122,9 +146,8 @@ html, body {
         <div class="logo">steam游戏中心</div>
         <div class="nav-menu">
             <a href="index.html">首页</a>
-            <!-- 点击导航直接跳转对应游戏页 -->
-            <a href="game01.html">单机游戏</a>
-            <a href="game02.html">互动游戏</a>
+            <a href="game-spider.html">单机游戏</a>
+            <a href="#">互动游戏</a>
             <a href="#">常见问题</a>
         </div>
     </div>
@@ -141,14 +164,45 @@ html, body {
 
     <div class="container">
         <h2 class="title-bar">最近更新</h2>
-        <!-- 空容器，不添加任何游戏卡片 -->
-        <div class="game-list"></div>
+        <div class="game-list" id="gameList"></div>
     </div>
 </div>
 
 <div class="footer">
     Copyright © 2026 steam游戏中心 | 免费游戏资源分享站
 </div>
+
+<script>
+// 自动读取 game-spider.html 里面的游戏 → 显示到首页
+async function loadGamesFromPage() {
+    const res = await fetch("game-spider.html");
+    const text = await res.text();
+    const doc = new DOMParser().parseFromString(text, "text/html");
+    const games = doc.querySelectorAll(".game-item");
+    const list = document.getElementById("gameList");
+
+    games.forEach(item => {
+        const img = item.getAttribute("data-img");
+        const title = item.getAttribute("data-title");
+        const size = item.getAttribute("data-size");
+        const date = item.getAttribute("data-date");
+
+        const card = document.createElement("div");
+        card.className = "game-card";
+        card.onclick = () => location.href = "game-spider.html";
+        card.innerHTML = `
+            <img src="${img}" alt="${title}">
+            <div class="info">
+                <h3>${title}</h3>
+                <p>${size} · ${date}</p>
+            </div>
+        `;
+        list.appendChild(card);
+    });
+}
+
+loadGamesFromPage();
+</script>
 
 </body>
 </html>
