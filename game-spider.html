@@ -14,7 +14,6 @@ body{background:#0b1023;color:#fff;padding:20px}
 .game-item h2{font-size:18px;margin-bottom:8px}
 .game-item p{color:#94a3b8;margin:4px 0}
 .down{background:#60a5fa;color:#fff;padding:8px 16px;border-radius:6px;display:inline-block;margin-top:10px;text-decoration:none}
-/* 隐藏所有游戏，由JS控制只显示目标游戏 */
 .game-item { display: none; }
 </style>
 </head>
@@ -23,16 +22,16 @@ body{background:#0b1023;color:#fff;padding:20px}
 <div class="container">
     <a href="index.html" class="back">← 返回首页</a>
 
-    <!-- ==================================== -->
-    <!-- 游戏1：漫威蜘蛛侠 -->
-    <div class="game-item" id="game-spider"
+    <!-- 漫威蜘蛛侠 -->
+    <div class="game-item"
          data-id="spider"
-         data-img="spider.jpg"
+         data-img="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/fa103eb1ac93423faa12e811089de823.png"
          data-title="漫威蜘蛛侠：重制版"
          data-size="53.94GB"
-         data-date="2026-01-19">
+         data-date="2026-01-19"
+         data-cate="单机游戏">
 
-        <img src="spider.jpg" alt="漫威蜘蛛侠">
+        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/fa103eb1ac93423faa12e811089de823.png" alt="漫威蜘蛛侠">
         <h2>漫威蜘蛛侠：重制版</h2>
         <p>大小：53.94GB</p>
         <p>更新：2026-01-19</p>
@@ -40,14 +39,14 @@ body{background:#0b1023;color:#fff;padding:20px}
         <a href="https://pan.quark.cn/s/e176648ea3da" class="down">网盘下载</a>
     </div>
 
-    <!-- ==================================== -->
-    <!-- 游戏2：GTA5 -->
-    <div class="game-item" id="game-gta5"
+    <!-- GTA5 -->
+    <div class="game-item"
          data-id="gta5"
          data-img="game2.jpg"
          data-title="GTA5 完整版"
          data-size="92GB"
-         data-date="2026-06-01">
+         data-date="2026-06-01"
+         data-cate="单机游戏">
 
         <img src="game2.jpg" alt="GTA5">
         <h2>GTA5 完整版</h2>
@@ -60,24 +59,20 @@ body{background:#0b1023;color:#fff;padding:20px}
 </div>
 
 <script>
-// 获取URL里的游戏ID
 const params = new URLSearchParams(location.search);
 const gameId = params.get('id');
+const cateName = params.get('cate');
 
 if (gameId) {
-    // 只显示对应ID的游戏
-    const targetGame = document.getElementById(`game-${gameId}`);
-    if (targetGame) {
-        targetGame.style.display = 'block';
-    } else {
-        // 找不到游戏时提示
-        document.querySelector('.container').innerHTML = '<p style="text-align:center;margin-top:50px;color:#94a3b8;">未找到该游戏</p><a href="index.html" class="back" style="display:block;text-align:center;margin-top:20px;">返回首页</a>';
-    }
-} else {
-    // 直接访问game-spider.html时，默认显示所有游戏
-    document.querySelectorAll('.game-item').forEach(item => {
-        item.style.display = 'block';
+    document.querySelectorAll('.game-item').forEach(g => {
+        if (g.dataset.id === gameId) g.style.display = 'block';
     });
+} else if (cateName) {
+    document.querySelectorAll('.game-item').forEach(g => {
+        if (g.dataset.cate === cateName) g.style.display = 'block';
+    });
+} else {
+    document.querySelectorAll('.game-item').forEach(g => g.style.display = 'block');
 }
 </script>
 
