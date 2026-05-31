@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>游戏详情</title>
+<title>steam游戏中心</title>
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <style>
 * {
@@ -12,89 +12,132 @@
     box-sizing: border-box;
     font-family: "Microsoft Yahei", sans-serif;
 }
-html,body{
-    background:#0b1023;
-    color:#fff;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
+
+html, body {
+    background-color: #0b1023;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
-.container{
-    max-width:1200px;
-    margin:0 auto;
-    padding:0 15px;
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
-.nav{
-    background:#121936;
-    padding:15px 0;
+
+.nav {
+    background-color: #121936;
+    padding: 15px 0;
 }
-.nav-box{
-    display:flex;
-    align-items:center;
+.nav-box {
+    display: flex;
+    align-items: center;
 }
-.logo{
-    font-size:22px;
-    font-weight:bold;
-    color:#60a5fa;
-    margin-right:30px;
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #60a5fa;
+    margin-right: 30px;
 }
-.nav-menu a{
-    color:#cbd5e1;
-    text-decoration:none;
-    margin:0 12px;
-    font-size:14px;
+.nav-menu a {
+    color: #cbd5e1;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 14px;
 }
-.nav-menu a:hover{
-    color:#60a5fa;
+.nav-menu a:hover {
+    color: #60a5fa;
 }
-.main{
-    flex:1;
-    padding:40px 0;
+
+.search-top {
+    padding: 40px 0;
+    text-align: center;
 }
-.detail-box{
-    background:#121936;
-    border-radius:8px;
-    padding:30px;
+.search-top h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #fff;
 }
-h1{
-    margin-bottom:15px;
-    font-size:24px;
+.search-top p {
+    color: #94a3b8;
+    margin-bottom: 25px;
 }
-.info{
-    color:#94a3b8;
-    margin-bottom:20px;
-    line-height:1.8;
+.search-input {
+    width: 100%;
+    max-width: 500px;
+    height: 56px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    padding: 0 24px;
+    background: #1e294b;
+    color: #fff;
+    font-size: 16px;
 }
-.desc{
-    line-height:1.8;
-    margin-bottom:30px;
+
+.title-bar {
+    font-size: 18px;
+    border-left: 4px solid #60a5fa;
+    padding-left: 12px;
+    margin: 30px 0 15px;
 }
-.download a{
-    display:inline-block;
-    background:#60a5fa;
-    color:#fff;
-    text-decoration:none;
-    padding:10px 25px;
-    border-radius:6px;
-    margin-right:15px;
-    margin-bottom:10px;
+
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: 50px;
 }
-.download a:hover{
-    background:#3b82f6;
+
+.game-card {
+    background: #121936;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.2s;
+    cursor: pointer;
 }
-.footer{
-    padding:10px 0;
-    color:#94a3b8;
-    font-size:13px;
+.game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px #253b7050;
+}
+.game-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+.game-card-text {
+    padding: 8px;
+}
+.game-card-text h3 {
+    font-size: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+}
+.game-card-text p {
+    font-size: 10px;
+    color: #94a3b8;
+}
+
+.footer {
+    background-color: #0b1023;
+    color: #94a3b8;
+    font-size: 13px;
+    padding: 10px 0;
 }
 </style>
 </head>
 <body>
+
 <div class="nav">
     <div class="container nav-box">
         <div class="logo">steam游戏中心</div>
         <div class="nav-menu">
-            <a href="../index.html">首页</a>
+            <a href="#">首页</a>
             <a href="#">单机游戏</a>
             <a href="#">互动游戏</a>
             <a href="#">常见问题</a>
@@ -102,28 +145,45 @@ h1{
     </div>
 </div>
 
-<div class="main">
+<div class="content-wrap">
+    <div class="search-top">
+        <div class="container">
+            <h1>欢迎来到steam游戏中心</h1>
+            <p>全站免费游戏资源，无收费、无套路，记得收藏本站</p>
+            <input type="text" class="search-input" placeholder="输入游戏名称搜索...">
+        </div>
+    </div>
+
     <div class="container">
-        <div class="detail-box">
-            <h1>魔法与钢铁：英雄牌局</h1>
-            <div class="info">
-                <p>游戏类型：单机游戏</p>
-                <p>文件大小：11 GB</p>
-                <p>更新时间：2026/05/31</p>
-            </div>
-            <div class="desc">
-                组建3名英雄的小队，准备你的卡组，在六边形棋盘上主宰战术战斗。每一局都需要不同策略，每张打出的卡牌都至关重要，并且只会在下一局才返回牌库。
-            </div>
-            <div class="download">
-                <a href="https://pan.quark.cn/s/xxx" target="_blank">夸克网盘</a>
-                <a href="https://pan.baidu.com/s/xxx" target="_blank">百度网盘</a>
-            </div>
+        <h2 class="title-bar">最近更新</h2>
+        <div class="game-list" id="gameList">
+            <!-- 这里会自动加载游戏，不用手动写 -->
         </div>
     </div>
 </div>
 
-<div class="footer container">
+<div class="footer">
     Copyright © 2026 steam游戏中心 | 免费游戏资源分享站
 </div>
+
+<!-- 读取游戏数据文件 -->
+<script src="data.js"></script>
+
+<script>
+// 自动从 data.js 读取游戏并显示卡片
+const list = document.getElementById('gameList');
+games.forEach(game => {
+  list.innerHTML += `
+    <div class="game-card" onclick="location.href='${game.link}'">
+      <img src="${game.img}" alt="">
+      <div class="game-card-text">
+        <h3>${game.title}</h3>
+        <p>${game.type} / ${game.date}</p>
+      </div>
+    </div>
+  `;
+});
+</script>
+
 </body>
 </html>
